@@ -10,6 +10,12 @@ import { UserComponent } from '../../pages/user/user.component';
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MapsComponent } from './maps/maps.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { IconsComponent } from './icons/icons.component';
+import { TableComponent } from './table/table.component';
+import { UpgradeComponent } from './upgrade/upgrade.component';
+import { TypographyComponent } from './typography/typography.component';
 
 @NgModule({
   imports: [
@@ -21,6 +27,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     DashboardComponent,
     UserComponent,
+    MapsComponent,
+    NotificationsComponent,
+    IconsComponent,
+    TableComponent,
+    // UpgradeComponent,
+    // TypographyComponent
   ],
 })
 

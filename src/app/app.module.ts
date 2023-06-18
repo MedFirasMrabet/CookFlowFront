@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { NavbarCPMModule } from './shared/navbar-cpm/navbar-cpm.module';
 import { NavbarCPMComponent } from './shared/navbar-cpm/navbar.component';
 import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
+import { AuthenticationService } from './services/authentication.service';
+import { LocalStorageManagerService } from './services/local-storage-manager.service';
+import { HttpClientModule } from "@angular/common/http";
+
+
 
 
 @NgModule({
@@ -28,19 +34,21 @@ import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
     ],
     imports: [
         BrowserAnimationsModule,
+        ReactiveFormsModule,
         SidebarModule,
         NavbarCPMModule,
         ToastrModule.forRoot(),
         FooterModule,
         FixedPluginModule,
+        HttpClientModule,
         NgbModule,
         FormsModule,
         RouterModule,
         AppRoutingModule,
         PagesModule,
-        AdminLayoutModule
+        AdminLayoutModule,
     ],
-    providers: [],
+    providers: [AuthenticationService,LocalStorageManagerService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
