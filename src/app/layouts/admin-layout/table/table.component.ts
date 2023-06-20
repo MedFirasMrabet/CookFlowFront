@@ -19,7 +19,8 @@ export class TableComponent implements OnInit {
     files: any
     user: any
     file: any
-    iframeUrl
+    iframeUrl;
+    showFormStaff = false;
     showImage = false;
     constructor(private manageTechnicalFileServicefd: ManageTechnicalFileService, private localStorageManagerService: LocalStorageManagerService) {
         this.uploadForm = new FormGroup({
@@ -55,7 +56,7 @@ export class TableComponent implements OnInit {
     getFile(file) {
         this.file = file
         this.showImage = true
-        return `http://localhost:3000/${this.file.path}`;
+        return `https://cook-flow.onrender.com/${this.file.path}`;
 
 
     }

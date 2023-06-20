@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class MangeStaffService {
 
-  private apiUrl = 'http://localhost:3000'; // Replace with your actual API URL
+  private apiUrl = 'https://cook-flow.onrender.com'; // Replace with your actual API URL
 
   constructor(private http: HttpClient) { }
 
