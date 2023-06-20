@@ -1,4 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LocalStorageManagerService } from 'app/services/local-storage-manager.service';
+import { ManageStockService } from 'app/services/manage-stock.service';
 
 declare var google: any;
 
@@ -9,23 +12,41 @@ declare var google: any;
 })
 
 export class MapsComponent implements OnInit {
-    ngOnInit() {
-        var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
-        var mapOptions = {
-          zoom: 13,
-          center: myLatlng,
-          scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
-          styles: [{"featureType":"water","stylers":[{"saturation":43},{"lightness":-11},{"hue":"#0088ff"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"hue":"#ff0000"},{"saturation":-100},{"lightness":99}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"color":"#808080"},{"lightness":54}]},{"featureType":"landscape.man_made","elementType":"geometry.fill","stylers":[{"color":"#ece2d9"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#ccdca1"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#767676"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"color":"#ffffff"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#b8cb93"}]},{"featureType":"poi.park","stylers":[{"visibility":"on"}]},{"featureType":"poi.sports_complex","stylers":[{"visibility":"on"}]},{"featureType":"poi.medical","stylers":[{"visibility":"on"}]},{"featureType":"poi.business","stylers":[{"visibility":"simplified"}]}]
+    showFormStock: boolean
+    user: any = {}
+    stockList: any[] = []
+    addStockForm: FormGroup;
+    constructor(private manageStockService: ManageStockService, private localStorageManagerService: LocalStorageManagerService) { }
 
-        }
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            title:"Hello World!"
+    async ngOnInit() {
+        this.user = this.localStorageManagerService.getUser()
+        this.stockList = await this.manageStockService.getStockByRestaurent(this.user.restaurent)
+        this.showFormStock = false;
+
+        this.addStockForm = new FormGroup({
+            name: new FormControl('', Validators.required),
+            price: new FormControl('', Validators.required),
+            quantity: new FormControl('', Validators.required),
+            minimumStockLevel: new FormControl('', Validators.required),
+            expiryDate: new FormControl('', Validators.required),
+            stockCategory: new FormControl('', Validators.required),
+            restaurent: new FormControl('', Validators.required)
         });
 
-        // To add the marker to the map, call setMap();
-        marker.setMap(map);
+    }
+
+    addFormStock() {
+        this.showFormStock = false;
+    }
+    async addStock() {
+        this.addStockForm.value.restaurent = this.user.restaurent
+        this.addStockForm.value.comments = []
+        this.addStockForm.value.expiryDate =  new Date(this.addStockForm.value.expiryDate).getTime();
+        const result = await this.manageStockService.addStock(this.addStockForm.value);
+        if (result) {
+            this.ngOnInit()
+        }
     }
 }
+

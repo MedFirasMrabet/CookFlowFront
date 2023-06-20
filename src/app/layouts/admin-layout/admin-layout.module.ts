@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
@@ -16,13 +16,17 @@ import { IconsComponent } from './icons/icons.component';
 import { TableComponent } from './table/table.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
 import { TypographyComponent } from './typography/typography.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+
   ],
   declarations: [
     DashboardComponent,
@@ -31,6 +35,7 @@ import { TypographyComponent } from './typography/typography.component';
     NotificationsComponent,
     IconsComponent,
     TableComponent,
+
     // UpgradeComponent,
     // TypographyComponent
   ],

@@ -1,23 +1,71 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
+      <!-- <div class="card-header">
         <h5 class="card-title">Staff</h5>
         <p class="card-category">
         </p>
-      </div>
+      </div> -->
+      <div class="col-md-8" *ngIf="showFormStaff">
+        <div class="card card-user">
+          <div class="card-header">
+            <h5 class="card-title">Ajout Staff</h5>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="addStaffForm" (ngSubmit)="addStaff()" >
+              <div class="row">
+              
+                <div class="col-md-12 pl-1">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email </label>
+                    <input formControlName="email" type="email" class="form-control" placeholder="Email">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Mot de Passe</label>
+                    <input formControlName="password" type="password" class="form-control" placeholder="Mot de passe">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Role</label>
+                    <select formControlName="role"  class="form-control" >
+                      <option value="Sous-Chef">Sous-Chef</option>
+                      <option value="Chef">Chef</option>
+                      <option value="Cook">Cook</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="update ml-auto mr-auto">
+                  <button type="submit" class="btn btn-primary btn-round">Ajouter Profile</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <div class="card">
+
       <div class="card-body">
         <div class="row">
           <div class="col-md-12">
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal"
+              (click)="showFormStaff = true">
               Ajouter Staff
             </button>
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
-                  <th>
+                  <!-- <th>
                     Nom
-                  </th>
+                  </th> -->
                   <th>
                     Email
                   </th>
@@ -26,80 +74,23 @@
                   </th>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let staff of staffList">
                     <td>
-                      Firas 
+                      {{staff.email}}
                     </td>
                     <td>
-                      firas@gmail.com
-                    </td>
-                    <td>
-                      Chef
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Abdelmlak 
-                    </td>
-                    <td>
-                      Abdelmlak@gmail.com
-                    </td>
-                    <td>
-                      Sous Chef
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Dhia  
-                    </td>
-                    <td>
-                      Dhia@gmail.com
-                    </td>
-                    <td>
-                      Cuisinier
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Sana 
-                    </td>
-                    <td>
-                      sana@gmail.com
-                    </td>
-                    <td>
-                      Stagiaire
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Faouzi 
-                    </td>
-                    <td>
-                      Faouzi@gmail.com
-                    </td>
-                    <td>
-                      Chef partie
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Rami 
-                    </td>
-                    <td>
-                      Rami@gmail.com
-                    </td>
-                    <td>
-                      Commis
+                      {{staff.role}}
                     </td>
                   </tr>
                 </tbody>
-                
+
               </table>
             </div>
           </div>
-        
+
         </div>
       </div>
+
     </div>
   </div>
 </div>

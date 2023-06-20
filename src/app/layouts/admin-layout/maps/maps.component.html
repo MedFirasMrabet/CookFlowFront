@@ -1,5 +1,76 @@
 <div class="row">
   <div class="col-md-12">
+    <div class="col-md-8" *ngIf="showFormStock">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Ajout Stock</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="addStockForm" (ngSubmit)="addStock()">
+            <div class="row">
+
+              <div class="col-md-12 pl-1">
+                <div class="form-group">
+                  <label for="exampleInputName">Nom </label>
+                  <input formControlName="name" type="text" class="form-control" placeholder="nom">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Prix</label>
+                  <input formControlName="price" type="number" class="form-control" placeholder="prix">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Quantité</label>
+                  <input formControlName="quantity" type="number" class="form-control" placeholder="Quantité">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Niveau Minimum du stock</label>
+                  <input formControlName="minimumStockLevel" type="number" class="form-control"
+                    placeholder="Niveau Minimum du stock">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Date d'expiration</label>
+                  <input formControlName="expiryDate" type="date" class="form-control" placeholder="Date d'expiration">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Categorie</label>
+                  <select formControlName="stockCategory" class="form-control">
+                    <option value="Food">food</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round">Ajouter Produit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <div class="card">
       <div class="card-header">
         <h5 class="card-title">Stock</h5>
@@ -9,7 +80,8 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-12">
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal"
+              (click)="showFormStock = true">
               Ajouter un produit
             </button>
 
@@ -31,171 +103,50 @@
                   <th>
                     Fournisseur
                   </th>
+                  <th>
+                    Date d'expiration
+                  </th>
+                  <th>
+                    Niveau minimum Stock
+                  </th>
                 </thead>
-           
+
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let stock of stockList">
                     <td>
-                      Pommes
+                      {{stock.name}}
                     </td>
                     <td>
-                      50
+                      {{stock.quantity}}
                     </td>
                     <td>
-                      Fruits
+                      {{stock.stockCategory}}
                     </td>
                     <td>
-                      0,50 €
+                      {{stock.price}}
                     </td>
                     <td>
                       Fournisseur A
                     </td>
+                    <td>
+                      {{stock.expiryDate | date:'mediumDate'}}
+                    </td>
+                    <td>
+                      {{stock.minimumStockLevel}}
+                    </td>
+
                   </tr>
-                  <tr>
-                    <td>
-                      Blanc de poulet
-                    </td>
-                    <td>
-                      20
-                    </td>
-                    <td>
-                      Viande
-                    </td>
-                    <td>
-                      4,99 €
-                    </td>
-                    <td>
-                      Fournisseur B
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Tomates
-                    </td>
-                    <td>
-                      30
-                    </td>
-                    <td>
-                      Légumes
-                    </td>
-                    <td>
-                      0,75 €
-                    </td>
-                    <td>
-                      Fournisseur C
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Pâtes
-                    </td>
-                    <td>
-                      40
-                    </td>
-                    <td>
-                      Épicerie
-                    </td>
-                    <td>
-                      1,99 €
-                    </td>
-                    <td>
-                      Fournisseur D
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Lait
-                    </td>
-                    <td>
-                      15
-                    </td>
-                    <td>
-                      Produits laitiers
-                    </td>
-                    <td>
-                      2,99 €
-                    </td>
-                    <td>
-                      Fournisseur E
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Laitue
-                    </td>
-                    <td>
-                      25
-                    </td>
-                    <td>
-                      Légumes
-                    </td>
-                    <td>
-                      1,25 €
-                    </td>
-                    <td>
-                      Fournisseur C
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Steak de bœuf
-                    </td>
-                    <td>
-                      10
-                    </td>
-                    <td>
-                      Viande
-                    </td>
-                    <td>
-                      8,99 €
-                    </td>
-                    <td>
-                      Fournisseur B
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Pommes de terre
-                    </td>
-                    <td>
-                      35
-                    </td>
-                    <td>
-                      Légumes
-                    </td>
-                    <td>
-                      0,80 €
-                    </td>
-                    <td>
-                      Fournisseur C
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Pain
-                    </td>
-                    <td>
-                      50
-                    </td>
-                    <td>
-                      Boulangerie
-                    </td>
-                    <td>
-                      2,49 €
-                    </td>
-                    <td>
-                      Fournisseur F
-                    </td>
-                  </tr>
+
                 </tbody>
-                
-         
+
+
               </table>
             </div>
           </div>
-        
+
         </div>
       </div>
+
     </div>
   </div>
 </div>

@@ -1,15 +1,97 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title"> Fiches Techniques</h4>
-      </div>
-      <div class="card-body">
-        <img src="assets/img/20230602_030236.jpg" alt="fiche1" width="100%" height="100%">
-        <img src="assets/img/20230602_030259.jpg" alt="fiche1" width="100%" height="100%">
 
+    <div class="col-md-8" *ngIf="showImage">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Display</h5>
+        </div>
+        <div class="card-body">
+
+
+          <img  src="http://localhost:3000/{{ file.path }}" alt="" height="auto" width="auto"
+            style="border: 1px solid red" />
+
+
+
+
+
+
+        </div>
       </div>
     </div>
+    <div class="col-md-8" *ngIf="showFormStaff">
+      <div class="card card-user">
+        <div class="card-header">
+          <h5 class="card-title">Ajout Staff</h5>
+        </div>
+        <div class="card-body">
+
+
+          <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-12 pl-1">
+                <div>
+                  <!-- <label for="file">fiche technique </label> -->
+                  <input (change)="onFileSelect($event)" type="file">
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-round">Upload</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal"
+              (click)="showFormStaff = true">
+              Ajouter Staff
+            </button>
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <!-- <th>
+                    Nom
+                  </th> -->
+                  <th>
+                    Nom
+                  </th>
+                  <th>
+                    Type
+                  </th>
+                  <th>
+                    Action
+                  </th>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let file of files">
+                    <td>
+                      {{file.originalname}}
+                    </td>
+                    <td>
+                      {{file.type}}
+                    </td>
+                    <!-- <td>
+                      <img class="image" src="http://localhost:3000/{{ file.path }}" alt="" height="400px" width="250px"
+                        style="border: 1px solid red" />
+                    </td> -->
+                    <td (click)="getFile(file)">
+                      <i class="nc-icon nc-tile-56"></i>
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </div>
->
 </div>

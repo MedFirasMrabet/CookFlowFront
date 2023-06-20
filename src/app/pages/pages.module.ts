@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { Page404Component } from './page404/page404.component';
 import { Page422Component } from './page422/page422.component';
 import { Page500Component } from './page500/page500.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     imports: [
@@ -26,9 +27,10 @@ import { Page500Component } from './page500/page500.component';
         NouisliderModule,
         JwBootstrapSwitchNg2Module,
         AngularMultiSelectModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'NO_API_KEY'
-        }),
+        HttpClientModule,
+        // AgmCoreModule.forRoot({
+        //     apiKey: 'NO_API_KEY'
+        // }),
         ImageUploadModule
     ],
     declarations: [

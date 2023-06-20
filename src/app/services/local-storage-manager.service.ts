@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 
@@ -10,7 +9,7 @@ export class LocalStorageManagerService {
   }
   private readonly TOKEN_KEY = 'token';
 
-  getToken(): string | null {
+  getToken(): any | null {
     return JSON.parse(localStorage.getItem(this.TOKEN_KEY));
   }
 
@@ -18,9 +17,10 @@ export class LocalStorageManagerService {
     localStorage.setItem(this.TOKEN_KEY, JSON.stringify(token));
   }
 
-  decodeToken() {
+  getDecodeToken() {
     if (this.getToken()) {
-      this.decodedToken = jwt_decode(this.getToken());
+      const token = this.getToken()
+      this.decodedToken = jwt_decode(token.access_token);
     }
   }
 
@@ -28,22 +28,21 @@ export class LocalStorageManagerService {
     localStorage.removeItem(this.TOKEN_KEY);
   }
 
-  getDecodeToken() {
-    return jwt_decode(this.getToken());
-  }
+
 
   getUser() {
-    this.decodeToken();
-    return this.decodedToken ? this.decodedToken.displayname : null;
+    
+    this.getDecodeToken();
+    return this.decodedToken ? this.decodedToken : null;
   }
 
   getEmail() {
-    this.decodeToken();
+    this.getDecodeToken();
     return this.decodedToken ? this.decodedToken.email : null;
   }
 
   getExpiryTime() {
-    this.decodeToken();
+    this.getDecodeToken();
     return this.decodedToken ? this.decodedToken.exp : null;
   }
 
