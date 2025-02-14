@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { LocalStorageManagerService } from 'app/services/local-storage-manager.service';
 import { ManageStockService } from 'app/services/manage-stock.service';
 
@@ -15,7 +15,7 @@ export class MapsComponent implements OnInit {
     showFormStock: boolean
     user: any = {}
     stockList: any[] = []
-    addStockForm: FormGroup;
+    addStockForm: UntypedFormGroup;
     constructor(private manageStockService: ManageStockService, private localStorageManagerService: LocalStorageManagerService) { }
 
 
@@ -24,14 +24,14 @@ export class MapsComponent implements OnInit {
         this.stockList = await this.manageStockService.getStockByRestaurent(this.user.restaurent)
         this.showFormStock = false;
 
-        this.addStockForm = new FormGroup({
-            name: new FormControl('', Validators.required),
-            price: new FormControl('', Validators.required),
-            quantity: new FormControl('', Validators.required),
-            minimumStockLevel: new FormControl('', Validators.required),
-            expiryDate: new FormControl('', Validators.required),
-            stockCategory: new FormControl('', Validators.required),
-            restaurent: new FormControl('', Validators.required)
+        this.addStockForm = new UntypedFormGroup({
+            name: new UntypedFormControl('', Validators.required),
+            price: new UntypedFormControl('', Validators.required),
+            quantity: new UntypedFormControl('', Validators.required),
+            minimumStockLevel: new UntypedFormControl('', Validators.required),
+            expiryDate: new UntypedFormControl('', Validators.required),
+            stockCategory: new UntypedFormControl('', Validators.required),
+            restaurent: new UntypedFormControl('', Validators.required)
         });
 
     }

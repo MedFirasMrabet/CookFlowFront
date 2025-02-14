@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { LocalStorageManagerService } from 'app/services/local-storage-manager.service';
 import { MangeStaffService } from 'app/services/mange-staff.service';
 
@@ -13,7 +13,7 @@ export class IconsComponent implements OnInit {
     showFormStaff: boolean
     user: any = {}
     staffList: any[] = []
-    addStaffForm: FormGroup;
+    addStaffForm: UntypedFormGroup;
     constructor(private mangeStaffService: MangeStaffService, private localStorageManagerService: LocalStorageManagerService,) { }
 
 
@@ -23,10 +23,10 @@ export class IconsComponent implements OnInit {
 
         this.staffList = await this.mangeStaffService.getStaffByRestaurent(this.user.restaurent)
 
-        this.addStaffForm = new FormGroup({
-            email: new FormControl('', Validators.required),
-            password: new FormControl('', Validators.required),
-            role: new FormControl('', Validators.required),
+        this.addStaffForm = new UntypedFormGroup({
+            email: new UntypedFormControl('', Validators.required),
+            password: new UntypedFormControl('', Validators.required),
+            role: new UntypedFormControl('', Validators.required),
         });
 
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { LocalStorageManagerService } from 'app/services/local-storage-manager.service';
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
     data: Date = new Date();
 
-    loginForm: FormGroup;
+    loginForm: UntypedFormGroup;
     constructor(private authService: AuthenticationService, private router: Router, private localStorageManager: LocalStorageManagerService) { }
 
     ngOnInit() {
@@ -26,9 +26,9 @@ export class LoginComponent implements OnInit {
         // if (navbar.classList.contains('nav-up')) {
         //     navbar.classList.remove('nav-up');
         // }
-        this.loginForm = new FormGroup({
-            email: new FormControl('', Validators.required),
-            password: new FormControl('', Validators.required)
+        this.loginForm = new UntypedFormGroup({
+            email: new UntypedFormControl('', Validators.required),
+            password: new UntypedFormControl('', Validators.required)
         });
 
     }

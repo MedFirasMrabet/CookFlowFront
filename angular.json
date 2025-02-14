@@ -118,7 +118,6 @@
       }
     }
   },
-  "defaultProject": "paper-kit-2-pro-angular",
   "schematics": {
     "@schematics/angular:component": {
       "inlineTemplate": false,

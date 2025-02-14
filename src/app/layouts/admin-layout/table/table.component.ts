@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { LocalStorageManagerService } from 'app/services/local-storage-manager.service';
 import { ManageTechnicalFileService } from 'app/services/manage-technical-file.service';
 
@@ -15,7 +15,7 @@ declare interface TableData {
 })
 
 export class TableComponent implements OnInit {
-    uploadForm: FormGroup;
+    uploadForm: UntypedFormGroup;
     files: any
     user: any
     file: any
@@ -23,8 +23,8 @@ export class TableComponent implements OnInit {
     showFormStaff = false;
     showImage = false;
     constructor(private manageTechnicalFileServicefd: ManageTechnicalFileService, private localStorageManagerService: LocalStorageManagerService) {
-        this.uploadForm = new FormGroup({
-            file: new FormControl(null) // FormControl for the file input
+        this.uploadForm = new UntypedFormGroup({
+            file: new UntypedFormControl(null) // FormControl for the file input
         });
     }
 
