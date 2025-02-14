@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "paper-kit-2-pro-angular": {
+    "cookflow-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -11,6 +11,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "/CookFlowFront/",
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
