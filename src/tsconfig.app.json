@@ -1,27 +1,20 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "target": "ES2022",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
     "outDir": "../out-tsc/app",
-    "module": "es2015",
-    "baseUrl": "",
-    "types": [],
-    "useDefineForClassFields": false
+    "module": "esnext",
+    "baseUrl": "./",
+    "types": []
   },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ],
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ],
-  "include":[
-    "main.ts",
-    "polyfills.ts",
-    "../node_modules/ng2-parallax/commonjs.ts"
   ]
 }

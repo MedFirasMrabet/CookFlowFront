@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { Location, PopStateEvent } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
